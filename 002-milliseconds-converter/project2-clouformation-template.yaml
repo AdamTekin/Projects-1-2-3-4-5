@@ -1,15 +1,15 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: 'AWS CloudFormation Sample Template UpdateTutorial Part 5: Sample template
+Description:
+  "AWS CloudFormation Sample Template UpdateTutorial Part 5: Sample template
   that can be used to test EC2 updates convert a single instance deployment into an
   Auto Scaled, Load Balanced solutio. **WARNING** This template creates an Amazon
   Ec2 Instance. You will be billed for the AWS resources used if you create a stack
-  from this template.'
-  
-Parameters:
+  from this template."
 
+Parameters:
   LinuxAmiId:
-    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
-    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+    Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 
   ENV:
     Type: String
@@ -17,7 +17,6 @@ Parameters:
     AllowedValues:
       - dev
       - prod
-
 
   VPCId:
     Description: VPC ID of the Lab VPC
@@ -127,20 +126,19 @@ Resources:
         - !Ref WebServerSecurityGroup
       IamInstanceProfile: !Ref WebServerInstanceProfile
       UserData:
-        Fn::Base64:
-          !Sub |
-            #!/bin/bash
-            yum update -y
-            yum install python3 -y
-            pip3 install flask
-            mkdir templates
-            cd templates
-            wget https://raw.githubusercontent.com/AysunOzer/aysun-milisecond/master/clarusway-workshop/aws/projects/002-milliseconds-converter/templates/index.html
-            wget https://raw.githubusercontent.com/AysunOzer/aysun-milisecond/master/clarusway-workshop/aws/projects/002-milliseconds-converter/templates/result.html
-            cd ..
-            wget https://raw.githubusercontent.com/AysunOzer/aysun-milisecond/master/clarusway-workshop/aws/projects/002-milliseconds-converter/millsecond-converter.py
-            python3 millsecond-converter.py
-            
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install python3 -y
+          pip3 install flask
+          mkdir templates
+          cd templates
+          wget https://raw.githubusercontent.com/AdamTekin/clarusway-aws-workshop/master/002-milliseconds-converter/templates/index.html
+          wget https://raw.githubusercontent.com/AdamTekin/clarusway-aws-workshop/master/002-milliseconds-converter/templates/result.html
+          cd ..
+          wget https://raw.githubusercontent.com/AdamTekin/clarusway-aws-workshop/master/002-milliseconds-converter/millsecond-converter.py
+          python3 millsecond-converter.py
+
 Outputs:
   WebsiteURL:
     Value: !Sub http://${ElasticLoadBalancer.DNSName}
