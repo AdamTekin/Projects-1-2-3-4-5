@@ -69,7 +69,6 @@ Resources:
           Protocol: HTTP
       HealthCheck:
         Target: HTTP:80/
-        Type: !Ref ElasticLoadBalancer
         HealthyThreshold: 3
         UnhealthyThreshold: 5
         Interval: 90
@@ -138,7 +137,7 @@ Resources:
           wget https://raw.githubusercontent.com/AdamTekin/clarusway-aws-workshop/master/002-milliseconds-converter/templates/index.html
           wget https://raw.githubusercontent.com/AdamTekin/clarusway-aws-workshop/master/002-milliseconds-converter/templates/result.html
           cd ..
-          wget https://raw.githubusercontent.com/AdamTekin/clarusway-aws-workshop/master/002-milliseconds-converter/millsecond-converter.py
+          wget https://raw.githubusercontent.com/AdamTekin/clarusway-aws-workshop/master/002-milliseconds-converter/millisecond-converter.py
           python3 millisecond-converter.py
 
 Outputs:
