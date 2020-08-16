@@ -2,12 +2,15 @@ from flask import Flaks, request, render_template
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
+db_endpoint = open('/home/ec2-user/dbserver.endpoint', 'r', encoding='UTF-8')
 
-app.config['MYSQL_DATABASE_HOST'] = 'db_endpoint'
+app.config['MYSQL_DATABASE_HOST'] = 'db_endpoint.readline().strip()'
 app.config['MYSQL_DATABASE_USER'] = 'admin'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'Clarusway_1'
 app.config['MYSQL_DATABASE_DB'] = 'phonebook'
 app.config['MYSQL_DATABASE_PORT'] = 3306
+
+db_endpoint.close()
 
 mysql = MySQL()
 mysql.init_app(app)
