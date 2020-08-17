@@ -1,6 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
   Cloudformation template for Phonebook Application.
+  
 Resources:
   ALBSecurityGroup:
     Type: "AWS::EC2::SecurityGroup"
@@ -20,6 +21,10 @@ Resources:
           FromPort: 80
           ToPort: 80
           SourceSecurityGroupId: !GetAtt ALBSecurityGroup.GroupId
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
   WebServerLT:
     Type: "AWS::EC2::LaunchTemplate"
     Properties:
