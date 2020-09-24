@@ -5,9 +5,10 @@ config = {
     'user': 'admin',
     'password': 'Clarusway_1'
     'host': 'I dont know'
-    'databse': 'phonebook'
+    'database': 'phonebook'
     'raise on warning': True
 }
+
 
 def init_phonebook_db(cursor):
     drop_table = 'DROP TABLE IF EXISTS phonebook.phonebook;'
@@ -31,8 +32,9 @@ def init_phonebook_db(cursor):
     cursor.execute(phonebook_table)
     cursor.execute(data)
 
+
 try:
-    cnx=mysql.connector.connector(**config)
+    cnx = mysql.connector.connector(**config)
     init_phonebook_db(cnx.cursor(buffered=True))
     cnx.commit()
 except mysql.connector.Error as err:
