@@ -147,7 +147,7 @@ def add_record():
 
 
 @app.route('/update', methods=['GET', 'POST'])
-def add_record():
+def update_record():
     if request.method == 'POST':
         name = request.form['username']
         if name is None or name.strip() == '':
