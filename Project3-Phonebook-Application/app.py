@@ -24,7 +24,7 @@ def init_phonebook_db():
     drop_table = 'DROP TABLE IF EXISTS phonebook.phonebook;'
     phonebook_table = """
     CREATE TABLE phonebook(
-    id INT NOT NULL AUTO INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     number VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
