@@ -1,0 +1,54 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+    stages {
+        stage('creating ECR Repo') {
+            steps {
+                echo 'creating ECR Repo'
+                echo "Build number is:: ${BUILD_NUMBER}"
+                echo "Workspace path is ::: ${WORKSPACE}"
+                sh 'echo trying like in linux::: $JENKINS_URL'
+            }
+        }
+        stage('building Docker image') {
+            steps {
+                echo 'building Docker image'
+            }
+        }
+        stage('pushing Docker image to ECR Repo') {
+            steps {
+                echo 'pushing Docker image to ECR Repo'
+            }
+        }
+        stage('creating infrastructure for the app') {
+            steps {
+                echo 'creating infrastructure for the app'
+                script {
+                    int counter = 0 ;
+                    while ( counter < 3 ) {
+                        println('Counting... ' +counter);
+                        sleep(2)
+                        counter++;
+                    }
+                }
+            }
+        }
+        stage('deploying the application') {
+            steps {
+                echo 'deploying the application'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Goodbye ALL... Please come back soon'
+        }
+        failure {
+            echo 'Sorry but you messed up...'
+        }
+        success { 
+            echo 'You are the man/woman...'
+        }
+    }
+}
