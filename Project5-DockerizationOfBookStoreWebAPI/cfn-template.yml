@@ -31,7 +31,7 @@ Resources:
         - !GetAtt WebServerSecurityGroup.GroupId
       Tags:
         - Key: Name
-          Value: !Sub Project 202 Webserver of ${AWS::Stackname}
+          Value: !Sub Project 202 Webserver of ${AWS::StackName}
       UserData:
         Fn::Base64: |
           #! /bin/bash
